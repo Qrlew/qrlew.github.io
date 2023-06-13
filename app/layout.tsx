@@ -1,4 +1,6 @@
 import './globals.css'
+
+// Import custom fonts
 import { Ovo, Red_Hat_Text, Red_Hat_Display, Fira_Code } from 'next/font/google'
 
 const ovo = Ovo({
@@ -28,6 +30,18 @@ export const metadata = {
   description: 'Manipulate complex SQL queries as simple composed computation blocks',
 }
 
+// Setup font awesoms
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
+// Setup Highlight.js
+import 'highlight.js/styles/github-dark.css';
+
+// Override some of the styles
+import './layout.module.css'
+
+// Setup the app
 export default function RootLayout({
   children,
 }: {
