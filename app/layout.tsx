@@ -38,9 +38,6 @@ config.autoAddCss = false
 // Setup Highlight.js
 import 'highlight.js/styles/github-dark.css';
 
-// Override some of the styles
-import './layout.module.css'
-
 // Setup the app
 export default function RootLayout({
   children,

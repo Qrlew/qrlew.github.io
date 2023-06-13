@@ -17,6 +17,7 @@ module.exports = {
       'dark-red': '#c4001d',
       'lighter-red': '#ffaaa3',
       'lightest-red': '#ffccc2',
+      'dark': '#2b303a',
     },
     fontFamily: {
       'sans': ['var(--font-red-hat-text)', 'sans'],
