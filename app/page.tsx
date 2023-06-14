@@ -195,8 +195,9 @@ let relation = relation.force_protect_from_field_paths(
       </div>
       <div className="w-full flex flex-col items-center bg-light-green text-lighter-green py-10">
         <div className="w-full max-w-7xl">
-          <h2 className="font-serif text-4xl">Parse SQL queries into Qrlew intermediate representation</h2>
-          <p className="text-xl my-3">Open source SQL manipulation framework written in Rust</p>
+          <h2 className="font-serif text-4xl">Compile SQL queries into Differentially Private ones</h2>
+          <p className="text-xl my-3">The process is inspired by <a href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf" className="text-lighter-red hover:text-light-red">Wilson et al. 2020</a>.
+            The complexity of the compilation process makes Qrlew IR very useful at delivering clean, readable and reliable code.</p>
         </div>
         <div className="w-full max-w-7xl flex flex-col items-center">
           <div className="w-full p-3">
@@ -210,7 +211,26 @@ let relation = Relation::try_from(
       item_table ON id=order_id;")
       .unwrap()
       .with(&relations),
-).unwrap();`}</Rust>
+).unwrap();
+// Add noise to get 𝜀,𝛿-DP
+let relation = relation.dp_compilation(
+  &relations,
+  &[
+      (
+          "item_table",
+          &[
+              ("order_id", "order_table", "id"),
+              ("user_id", "user_table", "id"),
+          ],
+          "name",
+      ),
+      ("order_table", &[("user_id", "user_table", "id")], "name"),
+      ("user_table", &[], "name"),
+  ],
+  1., // epsilon
+  1e-5 // delta
+);
+println!("relation = {relation}");`}</Rust>
           </div>
           <div className="p-3">
             <FontAwesomeIcon icon={faArrowDown} size="xl" />
@@ -223,13 +243,15 @@ let relation = Relation::try_from(
       <div className="w-full flex flex-col items-center bg-lighter-green text-main-green py-10">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl my-3">Why Qrlew?</h2>
-          <p className="text-xl my-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          <p className="text-xl my-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+          <p className="text-xl my-3">Sarus Technologies builds a state-of-the art product to access private data without seeing it.
+          Giving the possibility to run SQL queries safely is an important part of Sarus.
+          Qrlew is at the core of the next iteration of Sarus SQL engine. It is not yet in production but should be gradually integrated in Sarus and fully integrated by the end of the year.
+          Besides the DP algorithm need to be trusted, hence the open source release.</p>
         </div>
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl my-3">Where is it Going?</h2>
-          <p className="text-xl my-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-          <p className="text-xl my-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+          <p className="text-xl my-3">Qrlew is actively developped as the core of Sarus SQL offer, but it aims at being used elsewhere.
+          Many connectors to other tools in Differential Privacy should be developped in the coming months.</p>
         </div>
       </div>
       <div className="w-full max-w-7xl flex flex-col items-left bg-dark text-lighter-green py-10 z-10">
