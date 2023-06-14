@@ -14,7 +14,7 @@ export function SQL({children}: {children: React.ReactNode}) {
     useEffect(() => {
         hljs.initHighlighting();
     }, []);
-    return <pre><code className="sql rounded-2xl">
+    return <pre>SQL<code className="sql rounded-2xl my-3">
         {children}
     </code></pre>;
 }
@@ -23,7 +23,7 @@ export function Rust({children}: {children: React.ReactNode}) {
     useEffect(() => {
         hljs.initHighlighting();
     }, []);
-    return <pre><code className="rust rounded-2xl">
+    return <pre>Rust<code className="rust rounded-2xl my-3">
         {children}
     </code></pre>;
 }
@@ -32,7 +32,7 @@ export function Python({children}: {children: React.ReactNode}) {
     useEffect(() => {
         hljs.initHighlighting();
     }, []);
-    return <pre><code className="python rounded-2xl">
+    return <pre>Python<code className="python rounded-2xl my-3">
         {children}
     </code></pre>;
 }
