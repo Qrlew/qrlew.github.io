@@ -149,7 +149,7 @@ SELECT * FROM map_8r2s;`}</SQL>
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl">Track the protected entity accross SQL queries</h2>
           <p className="text-xl my-3">Differential Privacy (DP) is defined with respect to a <em>distance</em> between datasets.
-          A DP mechanisms is such that computations on neighboring datasets 
+          A DP mechanisms is such that computations on neighboring datasets yield indistinguishable results.
           <em>Neighboring</em> datasets are datasets at distance 1.
           In Qrlew, the distance is defined in terms of number if differing <em>protected entities</em> (PE).
           The PE is defined as an identifying string <code>_PROTECTED_ENTITY_ID_</code> added to each table. 
