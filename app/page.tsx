@@ -60,7 +60,7 @@ export default function Home() {
             improve the utility of DP results dramatically. By propagating types cleverly, Qrlew can returns bounds for all values.</p>
           </div>
           <div className="basis-1/3 p-3">
-            <h3 className="text-3xl my-3">Differantial Privacy compiler</h3>
+            <h3 className="text-3xl my-3">Differential Privacy compiler</h3>
             <p className="text-xl my-3">Qrlew can compile SQL queries into Differentially Private ones.
             The process is inspired by <a href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf" className="text-lighter-red hover:text-light-red">Wilson et al. 2020</a>.
             The complexity of the compilation process makes Qrlew IR very useful at delivering clean, readable and reliable code.</p>
