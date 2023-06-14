@@ -99,9 +99,9 @@ ON id=order_id;`}</SQL>
 
 let relation = Relation::try_from(
   parse("SELECT * FROM order_table JOIN
-      item_table ON id=order_id;")
-      .unwrap()
-      .with(&relations),
+    item_table ON id=order_id;")
+    .unwrap()
+    .with(&relations),
 ).unwrap();`}</Rust>
           </div>
           <div className="flex flex-col basis-1/5 p-3 items-center">
@@ -129,7 +129,7 @@ let query = Query::from(&relation);`}</Rust>
           </div>
           <div className="basis-2/5 p-3">
             <SQL>{
-              `WITH
+`WITH
   join__e_y (field_eygr, field_0wjz, field_cg0j,
     field_idxm, field_0eqn, field_3ned, field_gwco)
   AS (SELECT * FROM order_table JOIN item_table
@@ -164,21 +164,21 @@ ON id=order_id;`}</SQL>
 
 let relation = Relation::try_from(
   parse("SELECT * FROM order_table JOIN
-      item_table ON id=order_id;")
-      .unwrap()
-      .with(&relations),
+    item_table ON id=order_id;")
+    .unwrap()
+    .with(&relations),
 ).unwrap();
 // Define the protected entity: here the name of the user
 let relation = relation.force_protect_from_field_paths(
   &relations,
   &[
       (
-          "item_table",
-          &[
-              ("order_id", "order_table", "id"),
-              ("user_id", "user_table", "id"),
-          ],
-          "name",
+        "item_table",
+        &[
+          ("order_id", "order_table", "id"),
+          ("user_id", "user_table", "id"),
+        ],
+        "name",
       ),
       ("order_table", &[("user_id", "user_table", "id")], "name"),
       ("user_table", &[], "name"),
@@ -208,29 +208,28 @@ ON id=order_id;`}</SQL>
 
 let relation = Relation::try_from(
   parse("SELECT * FROM order_table JOIN
-      item_table ON id=order_id;")
-      .unwrap()
-      .with(&relations),
+    item_table ON id=order_id;")
+    .unwrap()
+    .with(&relations),
 ).unwrap();
 // Add noise to get 𝜀,𝛿-DP
 let relation = relation.dp_compilation(
   &relations,
   &[
-      (
-          "item_table",
-          &[
-              ("order_id", "order_table", "id"),
-              ("user_id", "user_table", "id"),
-          ],
-          "name",
-      ),
-      ("order_table", &[("user_id", "user_table", "id")], "name"),
-      ("user_table", &[], "name"),
+    (
+      "item_table",
+      &[
+        ("order_id", "order_table", "id"),
+        ("user_id", "user_table", "id"),
+      ],
+      "name",
+    ),
+    ("order_table", &[("user_id", "user_table", "id")], "name"),
+    ("user_table", &[], "name"),
   ],
   1., // epsilon
   1e-5 // delta
-);
-println!("relation = {relation}");`}</Rust>
+);`}</Rust>
           </div>
           <div className="p-3">
             <FontAwesomeIcon icon={faArrowDown} size="xl" />
