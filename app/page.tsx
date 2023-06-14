@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { GitHub, Twitter } from './buttons'
 import { SQL, Rust, Python } from './code'
-import Crane from './crane'
+import { Simple } from './dot'
 
 export default function Home() {
   return (
@@ -65,13 +65,11 @@ export default function Home() {
         </div>
         <div className="w-full max-w-7xl flex items-center flex-row">
           <div className="basis-1/3 p-3">
-            <SQL>{`SELECT * FROM table;`}</SQL>
+            <SQL>{`SELECT * FROM order_table
+JOIN item_table ON id=order_id;`}</SQL>
           </div>
-          <div className="basis-2/3 p-3">
-            <Python>
-{`def run():
-  return None`}
-            </Python>
+          <div className="basis-2/3 p-3 items-center">
+            <Simple/>
           </div>
         </div>
       </div>
@@ -104,10 +102,6 @@ export default function Home() {
           <h2 className="font-serif text-4xl">Parse SQL queries into Qrlew intermediate representation</h2>
           <p className="font-sans text-2xl">Open source SQL manipulation framework written in Rust</p>
         </div>
-      </div>
-      <div className="relative w-full h-[500px] text-light-green">
-        <h1 className="absolute font-serif text-7xl left-[20%] bottom-[200px] z-10">Made by Sarus with</h1>
-        <Crane/>
       </div>
     </main>
   )
