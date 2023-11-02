@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useEffect } from 'react';
 // Highlight.js
 import hljs from 'highlight.js';

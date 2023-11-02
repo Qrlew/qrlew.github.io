@@ -1,3 +1,4 @@
+import React from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
@@ -6,30 +7,9 @@ import { GitHub, Twitter } from './buttons'
 import { SQL, Rust, Python, Shell } from './code'
 import { Rewrite, Protect, Private } from './dot'
 
-export default function Home() {
+export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center bg-dark-green text-lighter-green font-body">
-      <div className="flex w-full justify-between">
-        <div className="flex justify-center">
-          <Image
-            src="/logo_alt.svg"
-            alt="Sarus Logo"
-            width={60}
-            height={60}
-            priority
-            className="pt-2"
-          />
-          <div className="font-display font-bold text-lg py-5">
-            <a href="http://sarus.tech/">Sarus</a>
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <div className="text-lg p-5"><a href="#get-started">Get Started</a></div>
-          <div className="text-lg p-5"><a href="https://pyqrlew.readthedocs.io/">Python Docs</a></div>
-          <div className="text-lg p-5"><a href="https://docs.rs/qrlew/latest/qrlew/">Rust Docs</a></div>
-          <div className="text-lg p-5"><FontAwesomeIcon icon={faGithub} size="xl" /><a className="ml-3" href="https://github.com/Qrlew">Github</a></div>
-        </div>
-      </div>
+    <React.Fragment>
       <div className="w-full flex flex-col items-center text-light-green py-10 z-10">
         <div className="w-full max-w-7xl text-center mt-20">
           <h1 className="font-serif text-9xl my-9"><span className="text-lightest-green">Qrlew</span> framework</h1>
@@ -254,37 +234,6 @@ let relation = relation.dp_compilation(
             Many connectors to other tools in Differential Privacy should be developped in the coming months.</p>
         </div>
       </div>
-      <div className="w-full flex flex-col items-center bg-dark text-lighter-green py-10 z-10">
-        <div className="w-full max-w-7xl text-sm py-1 text-[#999999]">Qrlew project is licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-          you may not use it except in compliance with the License.
-          You may obtain a copy of the License at
-        </div>
-        <div className="w-full max-w-7xl text-sm py-1 text-[#999999]">
-          <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
-        </div>
-        <div className="w-full max-w-7xl text-sm py-1 text-[#999999]">Unless required by applicable law or agreed to in writing, software
-          distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-          WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-          See the License for the specific language governing permissions and
-          limitations under the License.
-        </div>
-      </div>
-      <div className="w-full flex justify-center bg-dark">
-        <div className="font-display text-lg py-5">
-          Copyright 2023
-        </div>
-        <Image
-          src="/logo_alt.svg"
-          alt="Sarus Logo"
-          width={60}
-          height={60}
-          priority
-          className="pt-2"
-        />
-        <div className="font-display text-lg py-5">
-          <a href="http://sarus.tech/" className="font-bold">Sarus</a> Technologies
-        </div>
-      </div>
-    </main>
+    </React.Fragment>
   )
 }

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { Component } from 'react';
 import * as THREE from 'three';
 import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';

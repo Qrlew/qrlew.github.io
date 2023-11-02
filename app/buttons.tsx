@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import GitHubButton from 'react-github-btn'
 import { Follow } from 'react-twitter-widgets'
 

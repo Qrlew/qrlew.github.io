@@ -38,6 +38,10 @@ config.autoAddCss = false
 // Setup Highlight.js
 import 'highlight.js/styles/github-dark.css';
 
+import Image from 'next/image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
 // Setup the app
 export default function RootLayout({
   children,
@@ -46,7 +50,63 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${ovo.variable} ${red_hat_text.variable} ${red_hat_display.variable} ${fira_code.variable} overflow-x-hidden`}>{children}</body>
+      <body className={`${ovo.variable} ${red_hat_text.variable} ${red_hat_display.variable} ${fira_code.variable} overflow-x-hidden`}>
+        <main className="flex min-h-screen flex-col items-center bg-dark-green text-lighter-green font-body">
+          <div className="flex w-full justify-between">
+            <div className="flex justify-center">
+              <Image
+                src="/logo_alt.svg"
+                alt="Sarus Logo"
+                width={60}
+                height={60}
+                priority
+                className="pt-2"
+              />
+              <div className="font-display font-bold text-lg py-5">
+                <a href="http://sarus.tech/">Sarus</a>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="text-lg p-5"><a href="#get-started">Get Started</a></div>
+              <div className="text-lg p-5"><a href="https://pyqrlew.readthedocs.io/">Python Docs</a></div>
+              <div className="text-lg p-5"><a href="https://docs.rs/qrlew/latest/qrlew/">Rust Docs</a></div>
+              <div className="text-lg p-5"><FontAwesomeIcon icon={faGithub} size="xl" /><a className="ml-3" href="https://github.com/Qrlew">Github</a></div>
+            </div>
+          </div>
+          {children}
+          <div className="w-full flex flex-col items-center bg-dark text-lighter-green py-10 z-10">
+            <div className="w-full max-w-7xl text-sm py-1 text-[#999999]">Qrlew project is licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+              you may not use it except in compliance with the License.
+              You may obtain a copy of the License at
+            </div>
+            <div className="w-full max-w-7xl text-sm py-1 text-[#999999]">
+              <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+            </div>
+            <div className="w-full max-w-7xl text-sm py-1 text-[#999999]">Unless required by applicable law or agreed to in writing, software
+              distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+              See the License for the specific language governing permissions and
+              limitations under the License.
+            </div>
+          </div>
+          <div className="w-full flex justify-center bg-dark">
+            <div className="font-display text-lg py-5">
+              Copyright 2023
+            </div>
+            <Image
+              src="/logo_alt.svg"
+              alt="Sarus Logo"
+              width={60}
+              height={60}
+              priority
+              className="pt-2"
+            />
+            <div className="font-display text-lg py-5">
+              <a href="http://sarus.tech/" className="font-bold">Sarus</a> Technologies
+            </div>
+          </div>
+        </main>
+      </body>
     </html>
   )
 }
