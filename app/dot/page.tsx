@@ -1,32 +1,17 @@
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { GitHub, Twitter } from '../buttons'
 import { SQL, Rust, Python, Shell } from '../code'
 import { Rewrite, Protect, Private } from '../dot'
-
-async function rewriteWithDP() {
-    const res = await fetch('https://qrlew-zsyaspsckq-od.a.run.app/rewrite_with_differential_privacy', {
-      method: 'POST',
-      headers: new Headers({'content-type': 'application/json'}),
-      body: '{"dataset":{"tables":[{"name":"user_table","path":["schema","user_table"],"schema":{"fields":[{"name":"id","data_type":"Integer"},{"name":"name","data_type":"Text"},{"name":"age","data_type":"Integer"},{"name":"weight","data_type":"Float"}]},"size":10000},{"name":"action_table","path":["schema","action_table"],"schema":{"fields":[{"name":"action","data_type":"Text"},{"name":"user_id","data_type":"Integer"},{"name":"duration","data_type":"Float"}]},"size":10000}]},"query":"SELECT sum(duration) FROM action_table WHERE duration > 0 AND duration < 24","synthetic_data":[["user_table","synthetic_user_table"],["action_table","synthetic_action_table"]],"protected_entity":[["user_table",[],"id"],["action_table",[["user_id","user_table","id"]],"id"]],"epsilon":1.0,"delta":0.00001}',
-    })
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-    }
-    return res.json()
-}
+import Form from './form'
 
 export default async function Page() {
-  const data = await rewriteWithDP()
   return (
     <div className="w-full flex flex-col items-center text-lighter-green py-10 z-10">
       <div className="w-full max-w-7xl p-3">
         <h2 className="font-serif text-4xl my-3">Rewriten Request</h2>
         <h2 className="font-serif text-4xl my-3">Signature</h2>
-        <h2 className="font-serif text-4xl my-3">{data.signature}</h2>
+        <Form></Form>
         <p className="text-xl my-3">Qrlew is an <a href="https://github.com/Qrlew" className="text-lighter-red hover:text-light-red">open source library</a> that
           aims to parse and compile SQL queries into an <a href="https://en.wikipedia.org/wiki/Intermediate_representation" className="text-lighter-red hover:text-light-red">Intermediate Representation (IR)</a> that
           is well-suited for various rewriting tasks.

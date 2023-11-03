@@ -1,3 +1,4 @@
+'use client'
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 interface FormData {
@@ -8,16 +9,16 @@ const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({ data: '' });
   const [response, setResponse] = useState<string>('');
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
     try {
-      const response = await fetch('https://qrlew-zsyaspsckq-od.a.run.app/dot', {
+      const response = await fetch('api/dot', {
         method: 'POST',
         body: JSON.stringify({
           dataset: '{"tables":[{"name":"table_1","path":["schema","table_1"],"schema":{"fields":[{"name":"a","data_type":"Float"},{"name":"b","data_type":"Integer"}]},"size":10000}]}',
           query:"SELECT * FROM table_1",
-          dark_mode:false
+          dark_mode:false,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -26,15 +27,12 @@ const Form: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         setResponse(data.value);
+      } else {
+        setResponse("Meh");
       }
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   return (
