@@ -1,5 +1,3 @@
-'use client';
-import { useEffect } from 'react';
 // Highlight.js
 import hljs from 'highlight.js';
 import sql from 'highlight.js/lib/languages/sql';
@@ -12,38 +10,23 @@ hljs.registerLanguage('rust', rust);
 hljs.registerLanguage('python', python);
 hljs.registerLanguage('bash', bash);
 
-export function SQL({children}: {children: React.ReactNode}) {
-    useEffect(() => {
-        hljs.initHighlighting();
-    }, []);
-    return <pre>SQL<code className="sql rounded-2xl my-3">
-        {children}
-    </code></pre>;
+export function Code({ code, language }: { code: string, language: string }) {
+    const highlightedCode = hljs.highlight(language, code).value;
+    return <pre>{language}<code className="hljs sql rounded-2xl my-3" dangerouslySetInnerHTML={{__html: highlightedCode}}/></pre>;
 }
 
-export function Rust({children}: {children: React.ReactNode}) {
-    useEffect(() => {
-        hljs.initHighlighting();
-    }, []);
-    return <pre>Rust<code className="rust rounded-2xl my-3">
-        {children}
-    </code></pre>;
+export function SQL({children}: {children: string}) {
+    return <Code code={children} language='SQL'/>;
 }
 
-export function Python({children}: {children: React.ReactNode}) {
-    useEffect(() => {
-        hljs.initHighlighting();
-    }, []);
-    return <pre>Python<code className="python rounded-2xl my-3">
-        {children}
-    </code></pre>;
+export function Rust({children}: {children: string}) {
+    return <Code code={children} language='Rust'/>;
 }
 
-export function Shell({children}: {children: React.ReactNode}) {
-    useEffect(() => {
-        hljs.initHighlighting();
-    }, []);
-    return <pre><code className="bash rounded-2xl my-3">
-        {children}
-    </code></pre>;
+export function Python({children}: {children: string}) {
+    return <Code code={children} language='Python'/>;
+}
+
+export function Shell({children}: {children: string}) {
+    return <Code code={children} language='bash'/>;
 }
