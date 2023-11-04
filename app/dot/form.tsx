@@ -39,16 +39,19 @@ function Form() {
     }
   };
 
+  // const highlightedCode = hljs.highlight(language, code).value;
+
   return (
     <div>
       <form>
-          <textarea name="dataset" rows={5} cols={80} onChange={handleChange}>
+          <textarea name="dataset" rows={5} onChange={handleChange} className="w-full resize-y rounded-2xl my-3">
             {formData.dataset}
           </textarea>
-          <textarea name="query" rows={5} cols={80} onChange={handleChange}>
+          <textarea name="query" rows={5} cols={80} onChange={handleChange} className="w-full resize-none rounded-2xl my-3">
             {formData.query}
           </textarea>
       </form>
+      <pre><code className="hljs sql rounded-2xl my-3" contentEditable="true" dangerouslySetInnerHTML={{__html: "<p>Hello"}}/></pre>;
       {response && <p>{response}</p>}
     </div>
   );
