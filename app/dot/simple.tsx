@@ -21,7 +21,6 @@ export default function Simple({dataset: initial_dataset, query: initial_query, 
         method: 'POST',
         body: JSON.stringify({ dataset: JSON.parse(dataset), query: query, dark_mode: dark_mode }),
         headers: { 'Content-Type': 'application/json' },
-        mode: 'navigate',
       });
       if (response.ok) {
         setDot((await response.json()).value);
