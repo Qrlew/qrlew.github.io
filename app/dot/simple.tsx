@@ -48,23 +48,23 @@ export default function Simple({dataset: initial_dataset, query: initial_query, 
   return (
     <div className="w-full max-w-7xl flex flex-row items-center">
       <div className="w-6/12 p-3">
-        <p>Dataset definition</p>
+        <p className="text-xl my-3">Dataset definition</p>
         <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
           className="hljs rounded-2xl my-3"
           padding="1em"
           style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
         />
-        <p>Query</p>
+        <p className="text-xl my-3">Query</p>
         <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
           className="hljs rounded-2xl my-3"
           padding="1em"
           style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
         />
       </div>
-      <div className="flex flex-col w-1/12 p-3 items-center">
+      <div className="w-1/12 p-3 flex flex-col items-center">
         <FontAwesomeIcon icon={faArrowRight} size="xl" />
       </div>
-      <div className="w-5/12 p-3 items-center">
+      <div className="w-5/12 p-3">
         {dot && <Dot source={dot} />}
       </div>
     </div>

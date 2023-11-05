@@ -10,9 +10,7 @@ export function Dot({source}) {
     const graph = d3Graphviz.graphviz(graphContainer);
     graph.renderDot(source).zoom(false);
   }, [source]);
-
-
-  return <div className="w-full" ref={graphRef}/>;
+  return <div  className="flex flex-col items-center" ref={graphRef}/>;
 }
 
 export function Rewrite() {
