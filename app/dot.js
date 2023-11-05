@@ -1,11 +1,22 @@
 'use client';
-import React, { Component } from 'react';
-import * as d3 from 'd3'
-import 'd3-graphviz';
+import React, { Component, useEffect, useRef  } from 'react';
+import * as d3Graphviz from 'd3-graphviz';
 
-class Rewrite extends Component {
-    ref() {
-        d3.select(".dot-simple").graphviz().renderDot(`digraph graph_uvrq {
+export function Dot({source}) {
+  const graphRef = useRef(null);
+
+  useEffect(() => {
+    const graphContainer = graphRef.current;
+
+    const graph = d3Graphviz.graphviz(graphContainer);
+    graph.renderDot(source).zoom(false);
+  }, []);
+
+  return <div className="w-full" ref={graphRef} />;
+}
+
+export function Rewrite() {
+  return <Dot source='digraph graph_uvrq {
             rankdir="TB";
             splines=true;
             overlap=false;
@@ -24,19 +35,11 @@ class Rewrite extends Component {
         graph_xlkt -> graph_rlhx[label=""];
         graph_xlkt -> graph_cdqf[label=""];
         graph_uvrq -> graph_xlkt[label=""];
-    }`).zoom(false);
-    }
-
-    render() {
-        return (
-          <div className="dot-simple" ref={this.ref}/>
-        )
-      }
+    }'/>
 }
 
-class Protect extends Component {
-  ref() {
-      d3.select(".dot-protect").graphviz().renderDot(`digraph graph_2uvy {
+export function Protect() {
+  return <Dot source='digraph graph_2uvy {
 
         rankdir="TB";
         splines=true;
@@ -76,20 +79,12 @@ class Protect extends Component {
     graph_4zue -> graph_6kii[label=""];
     graph_3p3o -> graph_4zue[label=""];
     graph_2uvy -> graph_3p3o[label=""];
-}
-`).zoom(false);
-  }
-
-  render() {
-      return (
-        <div className="dot-protect w-full" ref={this.ref}/>
-      )
     }
+  '/>
 }
 
-class Private extends Component {
-  ref() {
-      d3.select(".dot-private").graphviz().renderDot(`digraph graph_egj5 {
+export function Private() {
+  return <Dot source='digraph graph_egj5 {
 
         rankdir="TB";
         splines=true;
@@ -142,19 +137,6 @@ class Private extends Component {
     graph_gye3 -> graph_j6p3[label=""];
     graph_ct20 -> graph_gye3[label=""];
     graph_egj5 -> graph_ct20[label=""];
-}
-`).zoom(false);
-  }
-
-  render() {
-      return (
-        <div className="dot-private w-full" ref={this.ref}/>
-      )
     }
-}
-
-export {
-  Rewrite,
-  Protect,
-  Private,
+  '/>
 }
