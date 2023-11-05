@@ -12,7 +12,7 @@ hljs.registerLanguage('bash', bash);
 
 export function Code({ code, language }: { code: string, language: string }) {
     const highlightedCode = hljs.highlight(language, code).value;
-    return <pre>{language}<code className="hljs sql rounded-2xl my-3" dangerouslySetInnerHTML={{__html: highlightedCode}}/></pre>;
+    return <pre>{language}<code className="hljs rounded-2xl my-3" dangerouslySetInnerHTML={{__html: highlightedCode}}/></pre>;
 }
 
 export function SQL({children}: {children: string}) {

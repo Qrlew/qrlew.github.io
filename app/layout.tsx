@@ -67,7 +67,7 @@ export default function RootLayout({
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="text-lg p-5"><a href="#get-started">Get Started</a></div>
+              <div className="text-lg p-5"><a href="/#get-started">Get Started</a></div>
               <div className="text-lg p-5"><a href="https://pyqrlew.readthedocs.io/">Python Docs</a></div>
               <div className="text-lg p-5"><a href="https://docs.rs/qrlew/latest/qrlew/">Rust Docs</a></div>
               <div className="text-lg p-5"><FontAwesomeIcon icon={faGithub} size="xl" /><a className="ml-3" href="https://github.com/Qrlew">Github</a></div>
