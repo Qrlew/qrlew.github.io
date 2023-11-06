@@ -12,5 +12,3 @@ export async function POST(request: Request) {
   }
   return response
 }
-
-// export const dynamic = "force-static";
