@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Link, Section, SubSection, Title, H1, H2, P } from '@/app/components'
-import Playground from '@/app/dot/playground'
+import Playground from '@/app/dp/playground'
 
 
 export default async function Page() {

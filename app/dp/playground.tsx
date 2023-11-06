@@ -6,7 +6,7 @@ import Editor from 'react-simple-code-editor';
 import hljs from 'highlight.js';
 import { Dot } from '../dot';
 
-export default function Simple({dataset: initial_dataset, query: initial_query, dark_mode}: {dataset: string, query: string, dark_mode: boolean}) {
+export default function Playground({dataset: initial_dataset, query: initial_query, dark_mode}: {dataset: string, query: string, dark_mode: boolean}) {
   const [dataset, setDataset] = useState<string>(initial_dataset);
   const [query, setQuery] = useState<string>(initial_query);
   const [dot, setDot] = useState<string>('');

@@ -8,7 +8,7 @@ export function Link({href, children}: {href: string, children: React.ReactNode}
 }
 
 // A Section
-export function Section({color, children}: {color: string, children: React.ReactNode}) {
+export function Section({color, children}: {color?: string, children: React.ReactNode}) {
     switch (color) {  
         case "dark-green":
             return <div className="w-full flex flex-col items-center bg-dark-green text-lighter-green py-10 z-10">{children}</div>;
@@ -29,4 +29,39 @@ export function Section({color, children}: {color: string, children: React.React
         default:
             return <div className="w-full flex flex-col items-center bg-dark-green text-lighter-green py-10 z-10">{children}</div>;
     }
+}
+
+// A Section
+export function SubSection({children}: {children: React.ReactNode}) {
+    return <div className="w-full max-w-7xl p-3">{children}</div>
+}
+
+// Title
+export function Title({children, id}: {children: React.ReactNode, id?: string}) {
+    return <h1 className="font-serif text-9xl my-9" id={id}>{children}</h1>
+}
+
+// Subtitle
+export function Subtitle({children}: {children: React.ReactNode}) {
+    return <p className="font-sans text-2xl my-3" >{children}</p>
+}
+
+// H1
+export function H1({children, id}: {children: React.ReactNode, id?: string}) {
+    return <h1 className="font-serif text-7xl my-9" id={id}>{children}</h1>
+}
+
+// H2
+export function H2({children, id}: {children: React.ReactNode, id?: string}) {
+    return <h2 className="font-serif text-4xl my-3" id={id}>{children}</h2>
+}
+
+// H3
+export function H3({children, id}: {children: React.ReactNode, id?: string}) {
+    return <h2 className="font-serif text-4xl my-3" id={id}>{children}</h2>
+}
+
+// P
+export function P({children}: {children: React.ReactNode}) {
+    return <p className="text-xl my-3">{children}</p>
 }
