@@ -2,15 +2,15 @@ import React from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { GitHub, Twitter } from './buttons'
 import { SQL, Rust, Python, Shell } from './code'
 import { Rewrite, Protect, Private } from './dot'
+import { Link, Section } from './components'
 
 export default function Page() {
   return (
     <React.Fragment>
-      <div className="w-full flex flex-col items-center text-light-green py-10 z-10">
+      <Section color="dark-green-alt">
         <div className="w-full max-w-7xl text-center mt-20">
           <h1 className="font-serif text-9xl my-9"><span className="text-lightest-green">Qrlew</span> framework</h1>
           <p className="font-sans text-2xl my-3">Open source SQL manipulation framework written in Rust</p>
@@ -19,12 +19,12 @@ export default function Page() {
           <GitHub />
           <Twitter />
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center text-lighter-green py-10 z-10">
+      </Section>
+      <Section color="dark-green">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl my-3">What is Qrlew?</h2>
-          <p className="text-xl my-3">Qrlew is an <a href="https://github.com/Qrlew" className="text-lighter-red hover:text-light-red">open source library</a> that
-            aims to parse and compile SQL queries into an <a href="https://en.wikipedia.org/wiki/Intermediate_representation" className="text-lighter-red hover:text-light-red">Intermediate Representation (IR)</a> that
+          <p className="text-xl my-3">Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that
+            aims to parse and compile SQL queries into an <Link href="https://en.wikipedia.org/wiki/Intermediate_representation">Intermediate Representation (IR)</Link> that
             is well-suited for various rewriting tasks.
             Although it was originally designed for privacy-focused applications, it can be utilized for a wide range of purposes.</p>
         </div>
@@ -37,21 +37,21 @@ export default function Page() {
           <div className="basis-1/3 p-3">
             <h3 className="text-3xl my-3">Type Inference Engine</h3>
             <p className="text-xl my-3">Differential Privacy (DP) guaranrtees are hard to obtain without destroying too much information.
-              In <a href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf" className="text-lighter-red hover:text-light-red">many mechanisms</a> having prior bounds on values can
+              In <Link href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">many mechanisms</Link> having prior bounds on values can
               improve the utility of DP results dramatically. By propagating types cleverly, Qrlew can returns bounds for all values.</p>
           </div>
           <div className="basis-1/3 p-3">
             <h3 className="text-3xl my-3">Differential Privacy compiler</h3>
             <p className="text-xl my-3">Qrlew can compile SQL queries into Differentially Private ones.
-              The process is inspired by <a href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf" className="text-lighter-red hover:text-light-red">Wilson et al. 2020</a>.
+              The process is inspired by <Link href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf">Wilson et al. 2020</Link>.
               The complexity of the compilation process makes Qrlew IR very useful at delivering clean, readable and reliable code.</p>
           </div>
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center bg-main-green text-lighter-green py-10">
+      </Section>
+      <Section color="main-green">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl" id="get-started">Get Started</h2>
-          <p className="text-xl my-3">Qrlew is a <a href="https://crates.io/crates/qrlew" className="text-lighter-red hover:text-light-red">Rust library</a>. To add it to your project, simply type:</p>
+          <p className="text-xl my-3">Qrlew is a <Link href="https://crates.io/crates/qrlew">Rust library</Link>. To add it to your project, simply type:</p>
           <Shell>
             {`# Create a new project
 cargo new super-sql-app
@@ -59,13 +59,13 @@ cargo new super-sql-app
 cd super-sql-app
 # Add qrlew library
 cargo add qrlew`}</Shell>
-          <p className="text-xl my-3">Qrlew comes as a <a href="https://pypi.org/project/pyqrlew/" className="text-lighter-red hover:text-light-red">python library</a>. For now it has limited features.
+          <p className="text-xl my-3">Qrlew comes as a <Link href="https://pypi.org/project/pyqrlew/">python library</Link>. For now it has limited features.
             To install it simply type:</p>
           <Shell>
             {`pip install pyqrlew`}</Shell>
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center bg-main-red text-lighter-red py-10">
+      </Section>
+      <Section color="main-red">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl">Parse SQL queries into Qrlew intermediate representation</h2>
           <p className="font-sans text-lg">Qrlew transforms a SQL query into a combination of simple operations such as Map, Reduce and Join that are applied to Tables.
@@ -92,8 +92,8 @@ let relation = Relation::try_from(
             <Rewrite />
           </div>
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center bg-light-red text-lightest-red py-10">
+      </Section>
+      <Section color="light-red">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl">Output SQL</h2>
           <p className="font-sans text-lg">After the rewritting process has happened in the intermediate representation, Qrlew can outputs plain SQL.</p>
@@ -125,8 +125,8 @@ let query = Query::from(&relation);`}</Rust>
 SELECT * FROM map_8r2s;`}</SQL>
           </div>
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center bg-lighter-red text-dark-red py-10">
+      </Section>
+      <Section color="lighter-red">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl">Track the protected entity accross SQL queries</h2>
           <p className="text-xl my-3">Differential Privacy (DP) is defined with respect to a <em>distance</em> between datasets.
@@ -173,11 +173,11 @@ let relation = relation.force_protect_from_field_paths(
             <Protect />
           </div>
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center bg-light-green text-lighter-green py-10">
+      </Section>
+      <Section color="light-green">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl">Compile SQL queries into Differentially Private ones</h2>
-          <p className="text-xl my-3">The process is inspired by <a href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf" className="text-lighter-red hover:text-light-red">Wilson et al. 2020</a>.
+          <p className="text-xl my-3">The process is inspired by <Link href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf">Wilson et al. 2020</Link>.
             The complexity of the compilation process makes Qrlew IR very useful at delivering clean, readable and reliable code.</p>
         </div>
         <div className="w-full max-w-7xl flex flex-col items-center">
@@ -219,8 +219,8 @@ let relation = relation.dp_compilation(
             <Private />
           </div>
         </div>
-      </div>
-      <div className="w-full flex flex-col items-center bg-lighter-green text-main-green py-10">
+      </Section>
+      <Section color="lighter-green">
         <div className="w-full max-w-7xl p-3">
           <h2 className="font-serif text-4xl my-3">Why Qrlew?</h2>
           <p className="text-xl my-3">Sarus Technologies builds a state-of-the art product to access private data without seeing it.
@@ -233,7 +233,7 @@ let relation = relation.dp_compilation(
           <p className="text-xl my-3">Qrlew is actively developped as the core of Sarus SQL offer, but it aims at being used elsewhere.
             Many connectors to other tools in Differential Privacy should be developped in the coming months.</p>
         </div>
-      </div>
+      </Section>
     </React.Fragment>
   )
 }
