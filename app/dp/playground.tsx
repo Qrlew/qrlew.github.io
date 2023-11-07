@@ -110,19 +110,20 @@ export default function Playground({dataset: initial_dataset, query: initial_que
     <div className="w-full flex overflow-x-auto">
       <div className="flex flex-row items-start">
         <div className="w-[800px] p-3">
-          <H3>Dataset, Query and Parameters</H3>
-          <P>Dataset definition</P>
-          <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
-          />
+          <H3>Query, Dataset and Parameters</H3>
           <P>Query</P>
           <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
+          <P>Dataset definition</P>
+          <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
+            className="hljs rounded-2xl my-3"
+            padding="1em"
+            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+          />
+          
           <P>Synthetic Data</P>
           <Editor value={syntheticData} onValueChange={updateSyntheticData} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
@@ -148,21 +149,21 @@ export default function Playground({dataset: initial_dataset, query: initial_que
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
         </div>
-        <div className="w-[100px] p-3 flex flex-col items-center">
+        <div className="w-[100px] p-3 my-72 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
-        <div className="w-[800px] p-3 flex flex-col items-center">
+        <div className="min-w-[400px] p-3 flex flex-col items-center">
           <H3>Intermediate Representation</H3>
           {dot && <Dot source={dot} />}
         </div>
-        <div className="w-[100px] p-3 flex flex-col items-center">
+        <div className="w-[100px] p-3 my-72 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
-        <div className="w-[800px] p-3 flex flex-col items-center">
+        <div className="min-w-[400px] p-3 flex flex-col items-center">
           <H3>Rewriten Intermediate Representation</H3>
           {dpDot && <Dot source={dpDot} />}
         </div>
-        <div className="w-[100px] p-3 flex flex-col items-center">
+        <div className="w-[100px] p-3 my-72 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
         <div className="w-[800px] p-3">

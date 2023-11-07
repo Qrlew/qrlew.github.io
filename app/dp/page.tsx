@@ -1,7 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { GitHub, Twitter } from '@/app/buttons'
 import { Link, Section, SubSection, Title, H1, H2, P } from '@/app/components'
 import Playground from '@/app/dp/playground'
 
@@ -11,6 +9,10 @@ export default async function Page() {
     <React.Fragment>
     <Section>
       <H1>Qrlew <span className="text-light-green">Playground</span></H1>
+      <div className="w-72 flex justify-between py-5 content-center">
+         <GitHub />
+         <Twitter />
+      </div>
       <div className="w-full max-w-[2048px] p-3">
         <H2>Simple Query Rewriting with Differential Privacy</H2>
         <P>Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that

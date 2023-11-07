@@ -1,7 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { GitHub, Twitter } from '@/app/buttons'
 import { Link, Section, SubSection, Title, H1, H2, P } from '@/app/components'
 import Playground from '@/app/dot/playground'
 
@@ -11,6 +9,10 @@ export default async function Page() {
     <React.Fragment>
     <Section>
       <H1>Qrlew <span className="text-light-green">Viewer</span></H1>
+      <div className="w-72 flex justify-between py-5 content-center">
+         <GitHub />
+         <Twitter />
+      </div>
       <SubSection>
         <H2>Simple Dataset and Query</H2>
         <Playground dataset={
