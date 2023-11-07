@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import Editor from 'react-simple-code-editor';
 import hljs from 'highlight.js';
-import { Dot } from '../dot';
+import { Link, Section, SubSection, Title, H1, H2, P } from '@/app/components'
+import { Dot } from '@/app/dot';
 
 export default function Playground({dataset: initial_dataset, query: initial_query, dark_mode}: {dataset: string, query: string, dark_mode: boolean}) {
   const [dataset, setDataset] = useState<string>(initial_dataset);

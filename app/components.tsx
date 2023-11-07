@@ -58,7 +58,7 @@ export function H2({children, id}: {children: React.ReactNode, id?: string}) {
 
 // H3
 export function H3({children, id}: {children: React.ReactNode, id?: string}) {
-    return <h2 className="font-serif text-4xl my-3" id={id}>{children}</h2>
+    return <h3 className="text-2xl my-3" id={id}>{children}</h3>
 }
 
 // P

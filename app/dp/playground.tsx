@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import Editor from 'react-simple-code-editor';
 import hljs from 'highlight.js';
-import { Dot } from '../dot';
+import { Link, Section, SubSection, Title, H1, H2, H3, P } from '@/app/components'
+import { Dot } from '@/app/dot';
 
 export default function Playground({dataset: initial_dataset, query: initial_query, synthetic_data: initial_synthetic_data, protected_entity: initial_protected_entity, dark_mode}:
     {dataset: string, query: string, synthetic_data: string, protected_entity: string, epsilon: number, delta: number, dark_mode: boolean}) {
@@ -109,37 +110,38 @@ export default function Playground({dataset: initial_dataset, query: initial_que
     <div className="w-full flex overflow-x-auto">
       <div className="flex flex-row items-start">
         <div className="w-[800px] p-3">
-          <p className="text-xl my-3">Dataset definition</p>
+          <H3>Dataset, Query and Parameters</H3>
+          <P>Dataset definition</P>
           <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
-          <p className="text-xl my-3">Query</p>
+          <P>Query</P>
           <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
-          <p className="text-xl my-3">Synthetic Data</p>
+          <P>Synthetic Data</P>
           <Editor value={syntheticData} onValueChange={updateSyntheticData} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
-          <p className="text-xl my-3">Protected Entity</p>
+          <P>Protected Entity</P>
           <Editor value={protectedEntity} onValueChange={updateProtectedEntity} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
-          <p className="text-xl my-3">Epsilon</p>
+          <P>Epsilon</P>
           <Editor value={JSON.stringify(epsilon)} onValueChange={updateEpsilon} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
           />
-          <p className="text-xl my-3">Delta</p>
+          <P>Delta</P>
           <Editor value={JSON.stringify(delta)} onValueChange={updateDelta} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
@@ -150,21 +152,21 @@ export default function Playground({dataset: initial_dataset, query: initial_que
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
         <div className="w-[800px] p-3 flex flex-col items-center">
-          <p className="text-xl my-3">Intermediate Representation</p>
+          <H3>Intermediate Representation</H3>
           {dot && <Dot source={dot} />}
         </div>
         <div className="w-[100px] p-3 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
         <div className="w-[800px] p-3 flex flex-col items-center">
-          <p className="text-xl my-3">Rewriten Intermediate Representation</p>
+          <H3>Rewriten Intermediate Representation</H3>
           {dpDot && <Dot source={dpDot} />}
         </div>
         <div className="w-[100px] p-3 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
         <div className="w-[800px] p-3">
-          <p className="text-xl my-3">Rewriten Query</p>
+          <H3>Rewriten Query</H3>
           <Editor value={dpQuery} onValueChange={()=>{}} highlight={highlight('sql')}
             className="hljs rounded-2xl my-3"
             padding="1em"

@@ -50,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${ovo.variable} ${red_hat_text.variable} ${red_hat_display.variable} ${fira_code.variable} overflow-x-hidden`}>
+      <body className={`${ovo.variable} ${red_hat_text.variable} ${red_hat_display.variable} ${fira_code.variable} overflow-x-clip`}>
         <main className="flex min-h-screen flex-col items-center bg-dark-green text-lighter-green font-body">
           <div className="flex w-full justify-between">
             <div className="flex justify-center">

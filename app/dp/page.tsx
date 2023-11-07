@@ -11,8 +11,14 @@ export default async function Page() {
     <React.Fragment>
     <Section>
       <H1>Qrlew <span className="text-light-green">Playground</span></H1>
-      <div className="w-full p-3">
+      <div className="w-full max-w-[2048px] p-3">
         <H2>Simple Query Rewriting with Differential Privacy</H2>
+        <P>Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that
+          aims to parse and compile SQL queries into an <Link href="https://en.wikipedia.org/wiki/Intermediate_representation">Intermediate Representation (IR)</Link> that
+          is well-suited for various rewriting tasks.
+          Although it was originally designed for privacy-focused applications, it can be utilized for a wide range of purposes.</P>
+        <P>In this playground you can change parameters interactively and see how Qrlew represent your query and rewrite it into a Differentially Private one.
+        </P>
         <Playground dataset={
 `{
   "tables":[
@@ -62,10 +68,6 @@ export default async function Page() {
   ["action_table",[["user_id","user_table","id"]],"id"]
 ]`
         } epsilon={1} delta={1e-5} dark_mode={true}></Playground>
-        <P>Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that
-          aims to parse and compile SQL queries into an <Link href="https://en.wikipedia.org/wiki/Intermediate_representation">Intermediate Representation (IR)</Link> that
-          is well-suited for various rewriting tasks.
-          Although it was originally designed for privacy-focused applications, it can be utilized for a wide range of purposes.</P>
       </div>
     </Section>
   </React.Fragment>

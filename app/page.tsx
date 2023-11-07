@@ -30,18 +30,18 @@ export default function Page() {
         </SubSection>
         <div className="w-full max-w-7xl flex items-center flex-row">
           <div className="basis-1/3 p-3">
-            <h3 className="text-3xl my-3">SQL Query IR</h3>
+            <H3>SQL Query IR</H3>
             <P>Qrlew transforms a SQL query into a combination of simple operations such as <code>Map</code>, <code>Reduce</code> and <code>Join</code> that are applied to  <code>Tables</code>.
               This representation simplifies the process of rewriting queries and reduces dependencies on the diverse range of syntactic constructs present in SQL.</P>
           </div>
           <div className="basis-1/3 p-3">
-            <h3 className="text-3xl my-3">Type Inference Engine</h3>
+            <H3>Type Inference Engine</H3>
             <P>Differential Privacy (DP) guaranrtees are hard to obtain without destroying too much information.
               In <Link href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf">many mechanisms</Link> having prior bounds on values can
               improve the utility of DP results dramatically. By propagating types cleverly, Qrlew can returns bounds for all values.</P>
           </div>
           <div className="basis-1/3 p-3">
-            <h3 className="text-3xl my-3">Differential Privacy compiler</h3>
+            <H3>Differential Privacy compiler</H3>
             <P>Qrlew can compile SQL queries into Differentially Private ones.
               The process is inspired by <Link href="https://petsymposium.org/popets/2020/popets-2020-0025.pdf">Wilson et al. 2020</Link>.
               The complexity of the compilation process makes Qrlew IR very useful at delivering clean, readable and reliable code.</P>
