@@ -24,7 +24,7 @@ export default async function Page() {
         ],
         "schema":{
            "fields":[
-              { "name":"id",  "data_type":"Integer" },
+              { "name":"id",  "data_type":"Integer", "constraint": "Unique" },
               { "name":"name", "data_type":"Text" },
               { "name":"age", "data_type":"Integer" },
               { "name":"weight", "data_type":"Float" }

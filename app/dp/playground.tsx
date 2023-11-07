@@ -108,7 +108,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   return (
     <div className="w-full flex overflow-x-auto">
       <div className="flex flex-row items-start">
-        <div className="w-[1000px] p-3">
+        <div className="w-[800px] p-3">
           <p className="text-xl my-3">Dataset definition</p>
           <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
@@ -149,21 +149,21 @@ export default function Playground({dataset: initial_dataset, query: initial_que
         <div className="w-[100px] p-3 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
-        <div className="w-[500px] p-3 flex flex-col items-center">
+        <div className="w-[800px] p-3 flex flex-col items-center">
           <p className="text-xl my-3">Intermediate Representation</p>
           {dot && <Dot source={dot} />}
         </div>
         <div className="w-[100px] p-3 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
-        <div className="w-[1000px] p-3 flex flex-col items-center">
+        <div className="w-[800px] p-3 flex flex-col items-center">
           <p className="text-xl my-3">Rewriten Intermediate Representation</p>
           {dpDot && <Dot source={dpDot} />}
         </div>
         <div className="w-[100px] p-3 flex flex-col items-center">
           <FontAwesomeIcon icon={faArrowRight} size="xl" />
         </div>
-        <div className="w-[1000px] p-3">
+        <div className="w-[800px] p-3">
           <p className="text-xl my-3">Rewriten Query</p>
           <Editor value={dpQuery} onValueChange={()=>{}} highlight={highlight('sql')}
             className="hljs rounded-2xl my-3"
