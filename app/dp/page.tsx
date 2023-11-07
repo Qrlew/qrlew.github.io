@@ -12,7 +12,7 @@ export default async function Page() {
     <Section>
       <H1>Qrlew <span className="text-light-green">Playground</span></H1>
       <div className="w-full p-3">
-        <H2>Simple Dataset and Query</H2>
+        <H2>Simple Query Rewriting with Differential Privacy</H2>
         <Playground dataset={
 `{
   "tables":[
