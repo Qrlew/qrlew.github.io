@@ -26,26 +26,20 @@ export default async function Page() {
   "tables":[
      {
         "name":"user_table",
-        "path":[
-           "schema",
-           "user_table"
-        ],
+        "path":["schema","user_table"],
         "schema":{
            "fields":[
-              { "name":"id",  "data_type":"Integer", "constraint": "Unique" },
+              { "name":"id",  "data_type":"Integer", "constraint":"Unique" },
               { "name":"name", "data_type":"Text" },
               { "name":"age", "data_type":"Integer" },
               { "name":"weight", "data_type":"Float" }
            ]
         },
-        "size":10000
+        "size":1000
      },
      {
         "name":"action_table",
-        "path":[
-           "schema",
-           "action_table"
-        ],
+        "path":["schema","action_table"],
         "schema":{
            "fields":[
               { "name":"action", "data_type":"Text" },
@@ -61,8 +55,8 @@ export default async function Page() {
 `SELECT sum(duration) FROM action_table WHERE duration > 0 AND duration < 24`
         } synthetic_data={
 `[
-  [ "user_table", "synthetic_user_table" ],
-  [ "action_table", "synthetic_action_table" ]
+  ["user_table","synthetic_user_table"],
+  ["action_table","synthetic_action_table"]
 ]`
         } protected_entity={
 `[
