@@ -14,11 +14,19 @@ function useHorizontalScroll() {
     if (el) {
       const onWheel = (e: WheelEvent) => {
         if (e.deltaY == 0) return;
-        e.preventDefault();
-        el.scrollTo({
-          left: el.scrollLeft + e.deltaY,
-          // behavior: "smooth"
-        });
+        // Read the scrollLeft value
+        const sl = el.scrollLeft;
+        // When saturating on the left
+        if ((sl===0 && e.deltaY<0) || ((el.offsetWidth+sl)===el.scrollWidth && e.deltaY>0)) {
+          el.scrollTo({
+            top: el.scrollTop + e.deltaY,
+          });
+        } else {
+          e.preventDefault();
+          el.scrollTo({
+            left: el.scrollLeft + e.deltaY,
+          });
+        }
       };
       el.addEventListener("wheel", onWheel);
       return () => el.removeEventListener("wheel", onWheel);
