@@ -8,12 +8,14 @@ export default async function Page() {
   return (
     <React.Fragment>
     <Section>
-      <H1>Qrlew <span className="text-light-green">Playground</span></H1>
-      <div className="w-72 flex justify-between py-5 content-center">
+      <div className="p-12">
+        <H1>Qrlew <span className="text-light-green">Playground</span></H1>
+      </div>
+      <div className="w-72 flex justify-between content-center">
          <GitHub />
          <Twitter />
       </div>
-      <div className="w-full max-w-[2048px] p-9">
+      <div className="w-full max-w-[2048px] p-12">
         <H2>Simple Query Rewriting with Differential Privacy</H2>
         <P>Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that
           aims to parse and compile SQL queries into an <Link href="https://en.wikipedia.org/wiki/Intermediate_representation">Intermediate Representation (IR)</Link> that
