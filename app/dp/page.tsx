@@ -13,7 +13,7 @@ export default async function Page() {
          <GitHub />
          <Twitter />
       </div>
-      <div className="w-full max-w-[2048px] p-3">
+      <div className="w-full max-w-[2048px] p-9">
         <H2>Simple Query Rewriting with Differential Privacy</H2>
         <P>Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that
           aims to parse and compile SQL queries into an <Link href="https://en.wikipedia.org/wiki/Intermediate_representation">Intermediate Representation (IR)</Link> that

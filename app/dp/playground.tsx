@@ -1,5 +1,5 @@
 'use client'
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import Editor from 'react-simple-code-editor';
@@ -7,8 +7,29 @@ import hljs from 'highlight.js';
 import { Link, Section, SubSection, Title, H1, H2, H3, P } from '@/app/components'
 import { Dot } from '@/app/dot';
 
+function useHorizontalScroll() {
+  const elRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = elRef.current;
+    if (el) {
+      const onWheel = (e: WheelEvent) => {
+        if (e.deltaY == 0) return;
+        e.preventDefault();
+        el.scrollTo({
+          left: el.scrollLeft + e.deltaY,
+          // behavior: "smooth"
+        });
+      };
+      el.addEventListener("wheel", onWheel);
+      return () => el.removeEventListener("wheel", onWheel);
+    }
+  }, []);
+  return elRef;
+}
+
 export default function Playground({dataset: initial_dataset, query: initial_query, synthetic_data: initial_synthetic_data, protected_entity: initial_protected_entity, dark_mode}:
     {dataset: string, query: string, synthetic_data: string, protected_entity: string, epsilon: number, delta: number, dark_mode: boolean}) {
+  const graphRef = useRef(null);
   const [dataset, setDataset] = useState<string>(initial_dataset);
   const [query, setQuery] = useState<string>(initial_query);
   const [syntheticData, setSyntheticData] = useState<string>(initial_synthetic_data);
@@ -105,9 +126,11 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   function highlight(language: string): (code: string) => string {
     return (code: string) => hljs.highlight(language, code).value;
   }
+
+  const scrollRef = useHorizontalScroll();
   
   return (
-    <div className="w-full flex overflow-x-auto">
+    <div className="w-full flex overflow-x-auto" ref={scrollRef}>
       <div className="flex flex-row items-start">
         <div className="w-[800px] p-3">
           <H3>Query, Dataset and Parameters</H3>
