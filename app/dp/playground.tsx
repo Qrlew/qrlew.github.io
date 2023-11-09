@@ -56,7 +56,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   async function updateDot(dataset: string, query: string) {
     try {
       // const response = await fetch('api/dot', {
-      const response = await fetch('https://qrlew-zsyaspsckq-od.a.run.app/dot', {
+      const response = await fetch('https://qrlew.sarus.app/dot', {
         method: 'POST',
         body: JSON.stringify({ dataset: JSON.parse(dataset), query: query, dark_mode: dark_mode }),
         headers: { 'Content-Type': 'application/json' },
@@ -75,7 +75,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   async function updateDP(dataset: string, query: string, synthetic_data: string, protected_entity: string, epsilon: number, delta: number) {
     try {
       // const response = await fetch('api/dot', {
-      const response = await fetch('https://qrlew-zsyaspsckq-od.a.run.app/rewrite_with_differential_privacy_with_dot', {
+      const response = await fetch('https://qrlew.sarus.app/rewrite_with_differential_privacy_with_dot', {
         method: 'POST',
         body: JSON.stringify({
           dataset: JSON.parse(dataset),

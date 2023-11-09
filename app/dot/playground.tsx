@@ -18,7 +18,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   async function updateDot(dataset: string, query: string) {
     try {
       // const response = await fetch('api/dot', {
-      const response = await fetch('https://qrlew-zsyaspsckq-od.a.run.app/dot', {
+      const response = await fetch('https://qrlew.sarus.app/dot', {
         method: 'POST',
         body: JSON.stringify({ dataset: JSON.parse(dataset), query: query, dark_mode: dark_mode }),
         headers: { 'Content-Type': 'application/json' },
