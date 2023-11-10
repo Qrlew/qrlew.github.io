@@ -47,6 +47,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   const [dot, setDot] = useState<string>('');
   const [dpQuery, setDpQuery] = useState<string>('');
   const [dpDot, setDpDot] = useState<string>('');
+  const [warning, setWarning] = useState<boolean>(false);
 
   // Init the graph for the first time
   useEffect(() => {updateDot(initial_dataset, initial_query)}, []);
@@ -62,11 +63,14 @@ export default function Playground({dataset: initial_dataset, query: initial_que
         headers: { 'Content-Type': 'application/json' },
       });
       if (response.ok) {
+        setWarning(false);
         setDot((await response.json()).value);
       } else {
+        setWarning(true);
         console.log("Invalid request");
       }
     } catch (error) {
+      setWarning(true);
       console.error(error);
     }
   };
@@ -89,12 +93,15 @@ export default function Playground({dataset: initial_dataset, query: initial_que
       });
       if (response.ok) {
         const dp_query_dot = JSON.parse((await response.json()).value);
+        setWarning(false);
         setDpQuery(dp_query_dot.query);
         setDpDot(dp_query_dot.dot);
       } else {
+        setWarning(true);
         console.log("Invalid request");
       }
     } catch (error) {
+      setWarning(true);
       console.error(error);
     }
   };
@@ -132,7 +139,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   }
 
   function highlight(language: string): (code: string) => string {
-    return (code: string) => hljs.highlight(language, code).value;
+    return (code: string) => hljs.highlight(code, {language: language}).value;
   }
 
   const scrollRef = useHorizontalScroll();
@@ -140,44 +147,43 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   return (
     <div className="w-full flex overflow-x-auto" ref={scrollRef}>
       <div className="flex flex-row items-start">
-        <div className="w-[800px] p-3">
+        <div className="w-[800px] p-3" style={warning ? { background: "#c4001d" } : {}} >
           <H3>Query, Dataset and Parameters</H3>
           <P>Query</P>
           <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
           <P>Dataset definition</P>
           <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
-          
           <P>Synthetic Data</P>
           <Editor value={syntheticData} onValueChange={updateSyntheticData} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
           <P>Protected Entity</P>
           <Editor value={protectedEntity} onValueChange={updateProtectedEntity} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
           <P>Epsilon</P>
           <Editor value={JSON.stringify(epsilon)} onValueChange={updateEpsilon} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
           <P>Delta</P>
           <Editor value={JSON.stringify(delta)} onValueChange={updateDelta} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
         </div>
         <div className="w-[100px] p-3 my-72 flex flex-col items-center">
@@ -202,7 +208,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
           <Editor value={dpQuery} onValueChange={()=>{}} highlight={highlight('sql')}
             className="hljs rounded-2xl my-3"
             padding="1em"
-            style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
+            style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
         </div>
       </div>

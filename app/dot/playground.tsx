@@ -11,6 +11,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   const [dataset, setDataset] = useState<string>(initial_dataset);
   const [query, setQuery] = useState<string>(initial_query);
   const [dot, setDot] = useState<string>('');
+  const [warning, setWarning] = useState<boolean>(false);
 
   // Init the graph for the first time
   useEffect(() => {updateDot(initial_dataset, initial_query)}, []);
@@ -24,11 +25,14 @@ export default function Playground({dataset: initial_dataset, query: initial_que
         headers: { 'Content-Type': 'application/json' },
       });
       if (response.ok) {
+        setWarning(false);
         setDot((await response.json()).value);
       } else {
+        setWarning(true);
         console.log("Invalid request");
       }
     } catch (error) {
+      setWarning(true);
       console.error(error);
     }
   };
@@ -49,7 +53,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   
   return (
     <div className="w-full max-w-7xl flex flex-row items-center">
-      <div className="w-6/12 p-3">
+      <div className="w-6/12 p-3" style={warning ? { background: "#c4001d" } : {}}>
         <p className="text-xl my-3">Dataset definition</p>
         <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
           className="hljs rounded-2xl my-3"
