@@ -42,8 +42,8 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   const [query, setQuery] = useState<string>(initial_query);
   const [syntheticData, setSyntheticData] = useState<string>(initial_synthetic_data);
   const [protectedEntity, setProtectedEntity] = useState<string>(initial_protected_entity);
-  const [epsilon, setEpsilon] = useState<number>(1.0);
-  const [delta, setDelta] = useState<number>(1e-5);
+  const [epsilon, setEpsilon] = useState<string>('1.0');
+  const [delta, setDelta] = useState<string>('1e-5');
   const [dot, setDot] = useState<string>('');
   const [dpQuery, setDpQuery] = useState<string>('');
   const [dpDot, setDpDot] = useState<string>('');
@@ -76,7 +76,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   };
 
   // update input dot
-  async function updateDP(dataset: string, query: string, synthetic_data: string, protected_entity: string, epsilon: number, delta: number) {
+  async function updateDP(dataset: string, query: string, synthetic_data: string, protected_entity: string, epsln: string, dlta: string) {
     try {
       // const response = await fetch('api/dot', {
       const response = await fetch('https://qrlew.sarus.app/rewrite_with_differential_privacy_with_dot', {
@@ -86,8 +86,8 @@ export default function Playground({dataset: initial_dataset, query: initial_que
           query: query,
           synthetic_data: JSON.parse(synthetic_data),
           protected_entity: JSON.parse(protected_entity),
-          epsilon: epsilon,
-          delta: delta,
+          epsilon: JSON.parse(epsln),
+          delta: JSON.parse(dlta),
           dark_mode: dark_mode }),
         headers: { 'Content-Type': 'application/json' },
       });
@@ -128,14 +128,14 @@ export default function Playground({dataset: initial_dataset, query: initial_que
     await updateDP(dataset, query, syntheticData, protected_entity, epsilon, delta);
   }
 
-  async function updateEpsilon(epsilon: string) {
-    setEpsilon(JSON.parse(epsilon));
-    await updateDP(dataset, query, syntheticData, protectedEntity, JSON.parse(epsilon), delta);
+  async function updateEpsilon(epsln: string) {
+    setEpsilon(epsln);
+    await updateDP(dataset, query, syntheticData, protectedEntity, epsln, delta);
   }
 
-  async function updateDelta(delta: string) {
-    setDelta(JSON.parse(delta));
-    await updateDP(dataset, query, syntheticData, protectedEntity, epsilon, JSON.parse(delta));
+  async function updateDelta(dlta: string) {
+    setDelta(dlta);
+    await updateDP(dataset, query, syntheticData, protectedEntity, epsilon, dlta);
   }
 
   function highlight(language: string): (code: string) => string {
@@ -174,13 +174,13 @@ export default function Playground({dataset: initial_dataset, query: initial_que
             style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
           <P>Epsilon</P>
-          <Editor value={JSON.stringify(epsilon)} onValueChange={updateEpsilon} highlight={highlight('json')}
+          <Editor value={epsilon} onValueChange={updateEpsilon} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
           <P>Delta</P>
-          <Editor value={JSON.stringify(delta)} onValueChange={updateDelta} highlight={highlight('json')}
+          <Editor value={delta} onValueChange={updateDelta} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ fontFamily: "var(--font-fira-code), monospace" }}
