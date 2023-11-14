@@ -142,11 +142,11 @@ export default function Playground({dataset: initial_dataset, query: initial_que
     return (code: string) => hljs.highlight(code, {language: language}).value;
   }
 
-  const scrollRef = useHorizontalScroll();
+  const scrollRef = null;//useHorizontalScroll();
   
   return (
-    <div className="w-full flex overflow-x-auto" ref={scrollRef}>
-      <div className="flex flex-row items-start">
+    <div className="w-full flex overflow-x-auto" ref={scrollRef} style={{transform: "rotateX(180deg)"}}>
+      <div className="flex flex-row items-start" style={{transform: "rotateX(180deg)"}}>
         <div className="w-[800px] p-3" style={warning ? { background: "#c4001d" } : {}} >
           <H3>Query, Dataset and Parameters</H3>
           <P>Query</P>

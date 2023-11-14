@@ -24,4 +24,28 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  
+  /* Style the scrollbars */
+  overflow: overlay;
+  *::-webkit-scrollbar {
+    display: block;
+    width: 16px;
+  }
+  
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background-color: #00000000;
+  }
+  
+  *::-webkit-scrollbar-track-piece {
+    background-color: #00000000;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #ffffff50;
+    border-radius: 24px;
+  }
 }
