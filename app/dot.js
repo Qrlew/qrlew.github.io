@@ -36,7 +36,7 @@ export function Rewrite() {
     }'/>
 }
 
-export function Protect() {
+export function TrackPrivacyUnit() {
   return <Dot source='digraph graph_2uvy {
 
         rankdir="TB";

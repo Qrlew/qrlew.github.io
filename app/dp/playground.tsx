@@ -35,13 +35,13 @@ function useHorizontalScroll() {
   return elRef;
 }
 
-export default function Playground({dataset: initial_dataset, query: initial_query, synthetic_data: initial_synthetic_data, protected_entity: initial_protected_entity, dark_mode}:
-    {dataset: string, query: string, synthetic_data: string, protected_entity: string, epsilon: number, delta: number, dark_mode: boolean}) {
+export default function Playground({dataset: initial_dataset, query: initial_query, synthetic_data: initial_synthetic_data, privacy_unit: initial_privacy_unit, dark_mode}:
+    {dataset: string, query: string, synthetic_data: string, privacy_unit: string, epsilon: number, delta: number, dark_mode: boolean}) {
   const graphRef = useRef(null);
   const [dataset, setDataset] = useState<string>(initial_dataset);
   const [query, setQuery] = useState<string>(initial_query);
   const [syntheticData, setSyntheticData] = useState<string>(initial_synthetic_data);
-  const [protectedEntity, setProtectedEntity] = useState<string>(initial_protected_entity);
+  const [privacyUnit, setPrivacyUnit] = useState<string>(initial_privacy_unit);
   const [epsilon, setEpsilon] = useState<string>('1.0');
   const [delta, setDelta] = useState<string>('1e-5');
   const [dot, setDot] = useState<string>('');
@@ -51,7 +51,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
 
   // Init the graph for the first time
   useEffect(() => {updateDot(initial_dataset, initial_query)}, []);
-  useEffect(() => {updateDP(initial_dataset, initial_query, initial_synthetic_data, initial_protected_entity, epsilon, delta)}, []);
+  useEffect(() => {updateDP(initial_dataset, initial_query, initial_synthetic_data, initial_privacy_unit, epsilon, delta)}, []);
   
   // update input dot
   async function updateDot(dataset: string, query: string) {
@@ -76,7 +76,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   };
 
   // update input dot
-  async function updateDP(dataset: string, query: string, synthetic_data: string, protected_entity: string, epsln: string, dlta: string) {
+  async function updateDP(dataset: string, query: string, synthetic_data: string, privacy_unit: string, epsln: string, dlta: string) {
     try {
       // const response = await fetch('api/dot', {
       const response = await fetch('https://qrlew.sarus.app/rewrite_with_differential_privacy_with_dot', {
@@ -85,7 +85,7 @@ export default function Playground({dataset: initial_dataset, query: initial_que
           dataset: JSON.parse(dataset),
           query: query,
           synthetic_data: JSON.parse(synthetic_data),
-          protected_entity: JSON.parse(protected_entity),
+          privacy_unit: JSON.parse(privacy_unit),
           epsilon: JSON.parse(epsln),
           delta: JSON.parse(dlta),
           dark_mode: dark_mode }),
@@ -109,33 +109,33 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   async function updateDataset(dataset: string) {
     setDataset(dataset);
     await updateDot(dataset, query);
-    await updateDP(dataset, query, syntheticData, protectedEntity, epsilon, delta);
+    await updateDP(dataset, query, syntheticData, privacyUnit, epsilon, delta);
   }
 
   async function updateQuery(query: string) {
     setQuery(query);
     await updateDot(dataset, query);
-    await updateDP(dataset, query, syntheticData, protectedEntity, epsilon, delta);
+    await updateDP(dataset, query, syntheticData, privacyUnit, epsilon, delta);
   }
 
   async function updateSyntheticData(synthetic_data: string) {
     setSyntheticData(synthetic_data);
-    await updateDP(dataset, query, synthetic_data, protectedEntity, epsilon, delta);
+    await updateDP(dataset, query, synthetic_data, privacyUnit, epsilon, delta);
   }
 
-  async function updateProtectedEntity(protected_entity: string) {
-    setProtectedEntity(protected_entity);
-    await updateDP(dataset, query, syntheticData, protected_entity, epsilon, delta);
+  async function updatePrivacyUnit(privacy_unit: string) {
+    setPrivacyUnit(privacy_unit);
+    await updateDP(dataset, query, syntheticData, privacy_unit, epsilon, delta);
   }
 
   async function updateEpsilon(epsln: string) {
     setEpsilon(epsln);
-    await updateDP(dataset, query, syntheticData, protectedEntity, epsln, delta);
+    await updateDP(dataset, query, syntheticData, privacyUnit, epsln, delta);
   }
 
   async function updateDelta(dlta: string) {
     setDelta(dlta);
-    await updateDP(dataset, query, syntheticData, protectedEntity, epsilon, dlta);
+    await updateDP(dataset, query, syntheticData, privacyUnit, epsilon, dlta);
   }
 
   function highlight(language: string): (code: string) => string {
@@ -167,8 +167,8 @@ export default function Playground({dataset: initial_dataset, query: initial_que
             padding="1em"
             style={{ fontFamily: "var(--font-fira-code), monospace" }}
           />
-          <P>Protected Entity</P>
-          <Editor value={protectedEntity} onValueChange={updateProtectedEntity} highlight={highlight('json')}
+          <P>Privacy Unit</P>
+          <Editor value={privacyUnit} onValueChange={updatePrivacyUnit} highlight={highlight('json')}
             className="hljs rounded-2xl my-3"
             padding="1em"
             style={{ fontFamily: "var(--font-fira-code), monospace" }}

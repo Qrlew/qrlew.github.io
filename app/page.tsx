@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { GitHub, Twitter } from '@/app/buttons'
 import { SQL, Rust, Python, Shell } from '@/app/code'
-import { Rewrite, Protect, Private } from '@/app/dot'
+import { Rewrite, TrackPrivacyUnit, Private } from '@/app/dot'
 import { Link, Section, SubSection, Title, Subtitle, H1, H2, H3, P } from '@/app/components'
 
 export default function Page() {
@@ -128,7 +128,7 @@ SELECT * FROM map_8r2s;`}</SQL>
       </Section>
       <Section color="lighter-red">
         <SubSection>
-          <H2 >Track the protected entity accross SQL queries</H2>
+          <H2 >Track the privacy unit accross SQL queries</H2>
           <P>Differential Privacy (DP) is defined with respect to a <em>distance</em> between datasets.
             A DP mechanisms is such that computations on neighboring datasets yield indistinguishable
             results. <em>Neighboring</em> datasets are datasets at distance 1.
@@ -149,7 +149,7 @@ let relation = Relation::try_from(
     .unwrap()
     .with(&relations),
 ).unwrap();
-// Define the protected entity: here the name of the user
+// Define the privacy unit: here the name of the user
 let relation = relation.force_protect_from_field_paths(
   &relations,
   &[
@@ -170,7 +170,7 @@ let relation = relation.force_protect_from_field_paths(
             <FontAwesomeIcon icon={faArrowDown} size="xl" />
           </div>
           <div className="w-full p-3">
-            <Protect />
+            <TrackPrivacyUnit />
           </div>
         </div>
       </Section>

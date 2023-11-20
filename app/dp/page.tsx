@@ -60,7 +60,7 @@ export default async function Page() {
   ["user_table","synthetic_user_table"],
   ["action_table","synthetic_action_table"]
 ]`
-        } protected_entity={
+        } privacy_unit={
 `[
   ["user_table",[],"id"],
   ["action_table",[["user_id","user_table","id"]],"id"]
