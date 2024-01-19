@@ -54,14 +54,14 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   return (
     <div className="w-full max-w-7xl flex flex-row items-center">
       <div className="w-6/12 p-3" style={warning ? { background: "#c4001d" } : {}}>
-        <p className="text-xl my-3">Dataset definition</p>
-        <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
+      <p className="text-xl my-3">Query</p>
+        <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
           className="hljs rounded-2xl my-3"
           padding="1em"
           style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
         />
-        <p className="text-xl my-3">Query</p>
-        <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
+        <p className="text-xl my-3">Dataset definition</p>
+        <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
           className="hljs rounded-2xl my-3"
           padding="1em"
           style={{ color: "#c9d1d9", background: "#0d1117", fontFamily: "var(--font-fira-code), monospace" }}
