@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import Editor from 'react-simple-code-editor';
 import hljs from 'highlight.js';
 import { Link, Section, SubSection, Title, H1, H2, H3, P } from '@/app/components'
@@ -146,70 +146,80 @@ export default function Playground({dataset: initial_dataset, query: initial_que
   
   return (
     <div className="w-full flex overflow-x-auto" ref={scrollRef} style={{transform: "rotateX(180deg)"}}>
-      <div className="flex flex-row items-start" style={{transform: "rotateX(180deg)"}}>
-        <div className="w-[800px] p-3" style={warning ? { background: "#c4001d" } : {}} >
-          <H3>Query, Dataset and Parameters</H3>
-          <P>Query</P>
-          <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
-          <P>Dataset definition</P>
-          <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
-          <P>Synthetic Data</P>
-          <Editor value={syntheticData} onValueChange={updateSyntheticData} highlight={highlight('json')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
-          <P>Privacy Unit</P>
-          <Editor value={privacyUnit} onValueChange={updatePrivacyUnit} highlight={highlight('json')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
-          <P>Epsilon</P>
-          <Editor value={epsilon} onValueChange={updateEpsilon} highlight={highlight('json')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
-          <P>Delta</P>
-          <Editor value={delta} onValueChange={updateDelta} highlight={highlight('json')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
+      <div className="flex flex-col items-start" style={{transform: "rotateX(180deg)"}}>
+        <div className="flex flex-row items-start">
+          <div className="w-[800px] p-3" style={warning ? { background: "#c4001d" } : {}} >
+            <H3>Query, Dataset and Parameters</H3>
+            <P>Query</P>
+            <Editor value={query} onValueChange={updateQuery} highlight={highlight('sql')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+            <P>Dataset definition</P>
+            <Editor value={dataset} onValueChange={updateDataset} highlight={highlight('json')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+            <P>Synthetic Data</P>
+            <Editor value={syntheticData} onValueChange={updateSyntheticData} highlight={highlight('json')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+            <P>Privacy Unit</P>
+            <Editor value={privacyUnit} onValueChange={updatePrivacyUnit} highlight={highlight('json')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+            <P>Epsilon</P>
+            <Editor value={epsilon} onValueChange={updateEpsilon} highlight={highlight('json')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+            <P>Delta</P>
+            <Editor value={delta} onValueChange={updateDelta} highlight={highlight('json')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+          </div>
+          <div className="w-[50px] p-3 my-72 flex flex-col items-center">
+            <FontAwesomeIcon icon={faArrowRight} size="2xl" />
+          </div>
+          <div className="w-[800px] p-3">
+            <H3>Rewritten DP Query</H3>
+            <Editor value={dpQuery} onValueChange={()=>{}} highlight={highlight('sql')}
+              className="hljs rounded-2xl my-3"
+              padding="1em"
+              style={{ fontFamily: "var(--font-fira-code), monospace" }}
+            />
+          </div>
         </div>
-        <div className="w-[100px] p-3 my-72 flex flex-col items-center">
-          <FontAwesomeIcon icon={faArrowRight} size="xl" />
+        <div className="flex flex-row items-center">
+          <div className="w-[800px] p-3 flex flex-col items-center" style={warning ? { background: "#c4001d" } : {}} >
+            <FontAwesomeIcon className="items-center" icon={faArrowDown} size="2xl" />
+          </div>
+          <div className="w-[50px] p-3 flex flex-col items-center"/>
+          <div className="w-[800px] p-3 flex flex-col items-center" style={warning ? { background: "#c4001d" } : {}} >
+            <FontAwesomeIcon className="items-center" icon={faArrowUp} size="2xl" />
+          </div>
         </div>
-        <div className="min-w-[400px] p-3 flex flex-col items-center">
-          <H3>Intermediate Representation</H3>
-          {dot && <Dot source={dot} />}
-        </div>
-        <div className="w-[100px] p-3 my-72 flex flex-col items-center">
-          <FontAwesomeIcon icon={faArrowRight} size="xl" />
-        </div>
-        <div className="min-w-[400px] p-3 flex flex-col items-center">
-          <H3>Rewriten Intermediate Representation</H3>
-          {dpDot && <Dot source={dpDot} />}
-        </div>
-        <div className="w-[100px] p-3 my-72 flex flex-col items-center">
-          <FontAwesomeIcon icon={faArrowRight} size="xl" />
-        </div>
-        <div className="w-[800px] p-3">
-          <H3>Rewriten Query</H3>
-          <Editor value={dpQuery} onValueChange={()=>{}} highlight={highlight('sql')}
-            className="hljs rounded-2xl my-3"
-            padding="1em"
-            style={{ fontFamily: "var(--font-fira-code), monospace" }}
-          />
+        <div className="flex flex-row items-start">
+          <div className="w-[800px] p-3">
+            <H3>Intermediate Representation</H3>
+            {dot && <Dot source={dot} />}
+          </div>
+          <div className="w-[50px] p-3 my-72 flex flex-col items-center">
+            <FontAwesomeIcon icon={faArrowRight} size="2xl" />
+          </div>
+          <div className="w-[800px] p-3">
+            <H3>Rewritten Intermediate Representation</H3>
+            {dpDot && <Dot source={dpDot} />}
+          </div>
         </div>
       </div>
     </div>

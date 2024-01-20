@@ -40,8 +40,8 @@ import 'highlight.js/styles/github-dark.css';
 
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faX } from '@fortawesome/free-solid-svg-icons'
+import { faDiscord, faGithub, faTwitter, faYCombinator } from '@fortawesome/free-brands-svg-icons'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 // Setup the app
 export default function RootLayout({
@@ -72,6 +72,7 @@ export default function RootLayout({
               <div className="text-lg p-5"><a href="https://qrlew.readthedocs.io/en/latest/tutorials/getting_started.html">Getting Started</a></div>
               <div className="text-lg p-5"><a href="https://qrlew.readthedocs.io/en/latest/api.html">API Reference</a></div>
               <div className="text-lg py-5 px-3"><a className="ml-3" href="https://github.com/Qrlew"><FontAwesomeIcon icon={faGithub} size="xl"/></a></div>
+              <div className="text-lg py-5 px-3"><a className="ml-3" href="/"><FontAwesomeIcon icon={faHome} size="xl"/></a></div>
               <div className="text-lg py-5 px-3"><a className="ml-3" href="https://discord.gg/JbvSPgyp"><FontAwesomeIcon icon={faDiscord} size="xl" /></a></div>
               <div className="text-lg py-5 px-3"><a className="ml-3" href="https://x.com/sarus_tech"><FontAwesomeIcon icon={faTwitter} size="xl" /></a></div>
             </div>
