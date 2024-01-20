@@ -76,28 +76,31 @@ export default function Page() {
 `{
   "tables":[
     {
-      "name": "order_table",
-      "path": ["schema", "order_table"],
+      "name": "customer",
+      "path": ["schema", "customer"],
       "schema": { "fields": [
-        {"name": "id", "data_type": "Integer"},
-        {"name": "name", "data_type": "Text"}
+        {"name": "id", "data_type": "Integer", "constraint": "Unique"},
+        {"name": "name", "data_type": "Text"},
+        {"name": "age", "data_type": "Float"}
       ]},
       "size": 1000
     },
     {
-      "name": "item_table",
-      "path": ["schema", "item_table"],
+      "name": "purchase",
+      "path": ["schema", "purchase"],
       "schema": { "fields": [
-        {"name": "id", "data_type": "Integer"},
-        {"name": "order_id", "data_type": "Integer"},
+        {"name": "id", "data_type": "Integer", "constraint": "Unique"},
+        {"name": "customer_id", "data_type": "Integer"},
+        {"name": "item", "data_type": "Text"},
         {"name": "price", "data_type": "Float"}
       ]},
-      "size": 1000
+      "size": 10000
     }
   ]
 }`
           } query={
-            `SELECT * FROM order_table JOIN item_table ON order_table.id=item_table.order_id;`
+`WITH customer_class AS (SELECT id, CASE WHEN age>=18 THEN 'adult' ELSE 'kid' END AS class FROM customer)
+SELECT class, avg(price) AS avg_purchase FROM customer_class JOIN purchase ON customer_class.id = purchase.customer_id GROUP BY class;`
           } dark_mode={true}></Playground>
         </div>
         <SubSection>
