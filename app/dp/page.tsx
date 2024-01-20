@@ -19,8 +19,7 @@ export default async function Page() {
         <H2>Simple Query Rewriting with Differential Privacy</H2>
         <P>Qrlew is an <Link href="https://github.com/Qrlew">open source library</Link> that
           aims to parse and compile SQL queries into an <Link href="https://en.wikipedia.org/wiki/Intermediate_representation">Intermediate Representation (IR)</Link> that
-          is well-suited for various rewriting tasks.
-          Although it was originally designed for privacy-focused applications, it can be utilized for a wide range of purposes.</P>
+          is well-suited for various rewriting tasks, including Differential Privacy.</P>
         <P>In this playground you can change parameters interactively and see how Qrlew represent your query and rewrite it into a Differentially Private one.
         </P>
         <Playground dataset={
