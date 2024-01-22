@@ -21,6 +21,12 @@ export default function Page() {
           <Twitter />
         </div>
       </Section>
+      {/* Temporary announcement */}
+      <div className="w-full flex flex-col items-center bg-[#001b37] text-lighter-green p-5 z-10">
+        <SubSection>
+        <div className="flex flex-row items-center"><img src="/AAAI-24_Mark-Inverse-300x277.png" width="100"/><p className="p-5 text-2xl">Meet us at <Link href="https://ppai-workshop.github.io/">PPAI-24: The 5th AAAI Workshop on Privacy-Preserving Artificial Intelligence</Link>, Monday, February 26, 2024.</p> </div>
+        </SubSection>
+      </div>
       <Section color="dark-green">
         <SubSection>
           <H2>What is Qrlew?</H2>
