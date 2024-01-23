@@ -27,7 +27,7 @@ const fira_code = Fira_Code({
 
 export const metadata = {
   title: 'Qrlew SQL Framework',
-  description: 'Manipulate complex SQL queries as simple composed computation blocks',
+  description: 'The SQL-to-SQL Differential Privacy layer',
 }
 
 // Setup font awesoms
