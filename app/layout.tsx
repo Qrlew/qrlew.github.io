@@ -65,7 +65,7 @@ export default function RootLayout({
                   className="pt-2"
                 />
                 <div className="font-display font-bold text-lg py-5">
-                  <a href="http://sarus.tech/">Sarus</a>
+                  Sarus
                 </div>
               </div>
               <div className="flex justify-center">
