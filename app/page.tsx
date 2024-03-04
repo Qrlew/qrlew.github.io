@@ -5,6 +5,7 @@ import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { GitHub, Twitter } from '@/app/buttons'
 import { SQL, Rust, Python, Shell } from '@/app/code'
 import { Rewrite, TrackPrivacyUnit, Private } from '@/app/dot'
+import Pdf from '@/app/pdf'
 import { Link, Section, SubSection, Title, Subtitle, H1, H2, H3, P } from '@/app/components'
 import Playground from '@/app/dot/playground'
 
@@ -34,11 +35,12 @@ export default function Page() {
           </div>
           <div className="basis-1/3 p-3">
             <H3>Feature-rich</H3>
-            <P>Qrlew covers the broadest range of SQL queries, including JOIN and nested queries.</P>
+            <P>Qrlew covers the broadest range of SQL queries, including <code>JOIN</code>, Common Table Expressions (<code>WITH</code>) and nested <code>SELECT</code>.</P>
           </div>
           <div className="basis-1/3 p-3">
             <H3>Privacy-optimized</H3>
-            <P>Qrlew keeps track of tight bounds and ranges throughout each step, minimizing the amount of noise needed to achieve differential privacy.</P>
+            <P>Qrlew automatically optimizes the most important DP parameters to maximize utility.</P>
+            <P>It keeps track of value bounds and ranges throughout each computation step, minimizing the amount of noise needed to achieve differential privacy.</P>
           </div>
         </div>
       </Section>
@@ -75,54 +77,67 @@ export default function Page() {
       </Section>
       <Section color="light-green">
         <SubSection>
-          <H2>Parse SQL queries into Qrlew intermediate representation</H2>
-          <P>Qrlew transforms a SQL query into a combination of simple operations such as Map, Reduce and Join that are applied to Tables.
-            This representation simplifies the process of rewriting queries and reduces dependencies on the diverse range of syntactic constructs present in SQL.</P>
-          <P>You can try this interactively below.</P>
-          <P>And <Link href="/dot">see more examples.</Link></P>
+          <H2>Deep-dive into Qrlew</H2>
+          <P>To learn more about qrlew read the <Link href="https://qrlew.readthedocs.io/en/latest/deep_dive.html">deep-dive section</Link> of the documentation, or read <Link href="https://arxiv.org/pdf/2401.06273.pdf">Qrlew white paper</Link>.
+          </P>
         </SubSection>
-        <div className="w-full max-w-7xl flex flex-row items-center">
-        <Playground dataset={
-`{
-  "tables":[
-    {
-      "name": "customer",
-      "path": ["schema", "customer"],
-      "schema": { "fields": [
-        {"name": "id", "data_type": "Integer", "constraint": "Unique"},
-        {"name": "name", "data_type": "Text"},
-        {"name": "age", "data_type": "Float"}
-      ]},
-      "size": 1000
-    },
-    {
-      "name": "purchase",
-      "path": ["schema", "purchase"],
-      "schema": { "fields": [
-        {"name": "id", "data_type": "Integer", "constraint": "Unique"},
-        {"name": "customer_id", "data_type": "Integer"},
-        {"name": "item", "data_type": "Text"},
-        {"name": "price", "data_type": "Float"}
-      ]},
-      "size": 10000
-    }
-  ]
-}`
-          } query={
-`WITH customer_class AS (SELECT id, CASE WHEN age>=18 THEN 'adult' ELSE 'kid' END AS class FROM customer)
-SELECT class, avg(price) AS avg_purchase FROM customer_class JOIN purchase ON customer_class.id = purchase.customer_id GROUP BY class;`
-          } dark_mode={true}></Playground>
+        <div className="w-full max-w-7xl flex flex-row items-top">
+          <div className="w-1/2 p-3">
+            <H3>Why a Whitepaper?</H3>
+            <P>Differential Privacy is hard to implement right. It is a problem for a piece of software one rely on for data protection</P>
+            <P>To foster trust, Sarus relies on a two-pronged strategy:
+            </P>
+            <ul className="list-inside list-disc text-xl my-3">
+              <li>Open-source core</li>
+              <li>Peer reviewed methodology</li>
+            </ul>
+            <P>Qrlew — Sarus SQL core — is <Link href="https://github.com/Qrlew/qrlew">open-source</Link> so that anyone, and experts in particular, can check its implementation.</P>
+            <P>Qrlew has been reviewed by the Differential Privacy community and <Link href="https://www.linkedin.com/feed/update/urn:li:activity:7168272878751105026">presented </Link>
+            in a AAAI-24 workshop: <Link href="https://ppai-workshop.github.io/">PPAI-24</Link> </P>
+            <H3>What does the Whitepaper tell us?</H3>
+            <P>The paper introduces Qrlew, an open source library that can parse SQL queries into
+            Relations — an intermediate representation — that keeps track of rich data types, value
+            ranges, and row ownership; so that they can easily be rewritten into differentially-private
+            equivalent and turned back into SQL queries for execution in a variety of standard data
+            stores.
+            </P>
+            <P>With Qrlew, a data practitioner can express their data queries in standard SQL; the data
+            owner can run the rewritten query without any technical integration and with strong privacy
+            guarantees on the output; and the query rewriting can be operated by a privacy-expert who
+            must be trusted by the owner, but may belong to a separate organization.
+            </P>
+          </div>
+          <div className="w-1/2 p-3">
+            <Pdf url="https://arxiv.org/pdf/2401.06273.pdf"/>
+          </div>
         </div>
-        <SubSection>
-          <P>The Relation can then be turned into a DP-equivalent Relation and rendered into a SQL query.</P>
-          <P><Link href="/dp">Test it in Qrlew playground.</Link></P>
-        </SubSection>
       </Section>
       <Section color="lighter-green">
         <SubSection>
-        <H2>Deep Dive into Qrlew</H2>
-        <P>To learn more about qrlew read the <Link href="https://qrlew.readthedocs.io/en/latest/deep_dive.html">deep-dive section</Link> of the documentation, or read <Link href="https://arxiv.org/pdf/2401.06273.pdf">Qrlew white paper</Link>.</P>
+          <H2>Play with Qrlew online</H2>
         </SubSection>
+        <div className="w-full max-w-7xl flex flex-row items-top">
+          <div className="w-1/2 p-3">
+          <H3>Qrlew <Link href="/dot">Relation Viewer</Link></H3>
+          <P>To rewrite SQL into Differentially Private SQL, Qrlew parses input queries and represent them in a abstract representation we call Relations.</P>
+          <P>Relations are compositions of simple building blocks that simplify the rewriting process.</P>
+          <P>To understand, how some SQL is parsed into a Relation, and debug some cases, you can play with the <Link href="/dot">interactive Relation Viewer</Link>.</P>
+          </div>
+          <div className="w-1/2 p-3">
+            <Link href="/dot"><img src="/viewer.png" className="shadow-[0_20px_25px_-5px_rgba(0,0,0,0.7)]"/></Link>
+          </div>
+        </div>
+        <div className="w-full max-w-7xl flex flex-row items-top py-12">
+          <div className="w-1/2 p-3">
+          <Link href="/dp"><img src="/playground.png" className="shadow-[0_20px_25px_-5px_rgba(0,0,0,0.7)]"/></Link>
+          </div>
+          <div className="w-1/2 p-3">
+          <H3>Qrlew <Link href="/dp">Playground</Link></H3>
+            <P>To see how SQL queries are parsed into Relations, which are rewritten into Differentially Private equivalent, and then rendered into safe SQL queries,
+              you can have a look at the <Link href="/dot">interactive Qrlew Playground</Link>.
+            </P>
+          </div>
+        </div>
       </Section>
     </React.Fragment>
   )
