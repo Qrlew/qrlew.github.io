@@ -76,7 +76,7 @@ export default function RootLayout({
                 <div className="text-lg p-5"><a href="https://qrlew.readthedocs.io/en/latest/api.html">API Reference</a></div>
                 <div className="text-lg py-5 px-3"><a className="ml-3" href="https://github.com/Qrlew"><FontAwesomeIcon icon={faGithub} size="xl"/></a></div>
                 <div className="text-lg py-5 px-3"><a className="ml-3" href="/"><FontAwesomeIcon icon={faHome} size="xl"/></a></div>
-                <div className="text-lg py-5 px-3"><a className="ml-3" href="https://discord.gg/JbvSPgyp"><FontAwesomeIcon icon={faDiscord} size="xl" /></a></div>
+                <div className="text-lg py-5 px-3"><a className="ml-3" href="https://discord.gg/XQ9jYshj2p"><FontAwesomeIcon icon={faDiscord} size="xl" /></a></div>
                 <div className="text-lg py-5 px-3"><a className="ml-3" href="https://x.com/sarus_tech"><FontAwesomeIcon icon={faTwitter} size="xl" /></a></div>
               </div>
             </div>
