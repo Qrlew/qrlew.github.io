@@ -108,7 +108,7 @@ export default function Page() {
             </P>
           </div>
           <div className="w-1/2 p-3">
-            <Pdf url="https://arxiv.org/pdf/2401.06273.pdf"/>
+            <Pdf url="/2401.06273v1.pdf"/>
           </div>
         </div>
       </Section>
