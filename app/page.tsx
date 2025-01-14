@@ -49,7 +49,7 @@ export default function Page() {
         <SubSection>
           <div className="flex flex-row items-center">
             <img src="/AAAI-24_Mark-Inverse-300x277.png" width="100"/>
-            <p className="p-5 text-2xl">Meet us at <Link href="https://ppai-workshop.github.io/">PPAI-24: The 5th AAAI Workshop on Privacy-Preserving Artificial Intelligence</Link>, Monday, February 26, 2024.
+            <p className="p-5 text-2xl">Meet us at <Link href="https://aaai-ppai24.github.io/">PPAI-24: The 5th AAAI Workshop on Privacy-Preserving Artificial Intelligence</Link>, Monday, February 26, 2024.
             Read <Link href="https://arxiv.org/pdf/2401.06273.pdf">the paper</Link> we will present. And give <Link href="mailto:ng@sarus.tech">us</Link> your feedback.</p>
           </div>
         </SubSection>
